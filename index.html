@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammad Reza Abdollahi — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand: #097D68;
+    --brand-soft: rgba(9,125,104,0.08);
+    --brand-mid: rgba(9,125,104,0.18);
+    --fg: #0f0f0f; --fg-2: #3a3a3a; --fg-3: #6b6b6b; --fg-4: #9b9b9b;
+    --bg: #f7f6f4;
+    --glass-bg: rgba(255,255,255,0.62);
+    --glass-border: rgba(0,0,0,0.07);
+    --glass-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05);
+    --radius: 14px; --radius-sm: 8px; --nav-h: 60px; --max: 1040px;
+    --t: 0.18s cubic-bezier(0.4,0,0.2,1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #f0efed; --fg-2: #c8c6c2; --fg-3: #8a8884; --fg-4: #5a5856;
+      --bg: #111110;
+      --glass-bg: rgba(28,27,25,0.72);
+      --glass-border: rgba(255,255,255,0.07);
+      --glass-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 16px rgba(0,0,0,0.25);
+      --brand-soft: rgba(9,125,104,0.12); --brand-mid: rgba(9,125,104,0.22);
+    }
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Roboto', sans-serif; background: var(--bg); color: var(--fg); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 100; background: var(--glass-bg); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); border-bottom: 1px solid var(--glass-border); }
+  .nav-inner { max-width: var(--max); margin: 0 auto; height: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+  .nav-logo { font-size: 14px; font-weight: 500; color: var(--fg); letter-spacing: -0.01em; text-decoration: none; }
+  .nav-links { display: flex; gap: 8px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--fg-3); text-decoration: none; padding: 6px 12px; border-radius: var(--radius-sm); transition: color var(--t), background var(--t); }
+  .nav-links a:hover { color: var(--fg); background: var(--glass-border); }
+  .nav-links a.active { color: var(--brand); }
+  main { max-width: var(--max); margin: 0 auto; padding: calc(var(--nav-h) + 64px) 24px 96px; }
+  .page { display: none; }
+  .page.active { display: block; animation: fadeIn 0.22s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .hero-name { font-size: clamp(42px, 6vw, 68px); font-weight: 300; letter-spacing: -0.05em; line-height: 1; color: var(--fg); margin-bottom: 12px; }
+  .hero-title { font-size: 13px; color: var(--fg-4); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; margin-bottom: 20px; font-family: 'Roboto Mono', monospace; }
+  .hero-statement { font-size: 20px; color: var(--fg-2); font-weight: 300; max-width: 100%; line-height: 1.7; }
+  .section { margin-top: 56px; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-4); font-family: 'Roboto Mono', monospace; margin-bottom: 20px; }
+  .glass { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); border: 1px solid var(--glass-border); border-radius: var(--radius); box-shadow: var(--glass-shadow); }
+  .about-card { padding: 24px 28px; }
+  .about-card p { font-size: 15px; color: var(--fg-2); font-weight: 300; line-height: 1.8; }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: flex; flex-direction: column; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--glass-border); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-period { font-size: 11px; font-family: 'Roboto Mono', monospace; color: var(--fg-4); margin-bottom: 2px; }
+  .exp-role { font-size: 14px; font-weight: 500; color: var(--fg); }
+  .exp-co { font-size: 13px; color: var(--fg); margin-top: 1px; font-weight: 400; }
+  .skills-section { display: flex; flex-direction: column; gap: 24px; }
+  .skill-group { }
+  .skill-group-label { font-size: 11px; font-family: 'Roboto Mono', monospace; color: var(--brand); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+  .exp-bullets { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullet { font-size: 13px; color: var(--fg-3); font-weight: 300; line-height: 1.6; display: flex; gap: 8px; }
+  .exp-bullet::before { content: '—'; color: var(--brand); flex-shrink: 0; font-family: 'Roboto Mono', monospace; font-size: 11px; margin-top: 2px; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag { font-size: 12px; font-family: 'Roboto Mono', monospace; color: var(--fg-3); padding: 5px 13px; border: 1px solid var(--glass-border); border-radius: 100px; background: var(--glass-bg); backdrop-filter: blur(8px); transition: color var(--t), border-color var(--t), background var(--t); cursor: default; }
+  .skill-tag:hover { color: var(--brand); border-color: var(--brand-mid); background: var(--brand-soft); }
+  .project-list-home { display: flex; flex-direction: column; }
+  .proj-home-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--glass-border); cursor: pointer; text-decoration: none; color: inherit; transition: padding-left var(--t); }
+  .proj-home-item:last-child { border-bottom: none; }
+  .proj-home-item:hover { padding-left: 6px; }
+  .proj-home-title { font-size: 15px; font-weight: 400; color: var(--fg); transition: color var(--t); }
+  .proj-home-item:hover .proj-home-title { color: var(--brand); }
+  .proj-home-year { font-size: 12px; font-family: 'Roboto Mono', monospace; color: var(--fg-4); }
+  .portfolio-list { display: flex; flex-direction: column; gap: 10px; }
+  .proj-card { padding: 22px 24px; transition: transform var(--t), box-shadow var(--t); }
+  .proj-card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 28px rgba(0,0,0,0.09); }
+  .proj-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .proj-title { font-size: 15px; font-weight: 500; color: var(--fg); }
+  .proj-role-tag { font-size: 11px; font-family: 'Roboto Mono', monospace; color: var(--brand); background: var(--brand-soft); padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+  .proj-desc { font-size: 13px; color: var(--fg-3); margin-bottom: 16px; line-height: 1.65; font-weight: 300; }
+  .proj-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--brand); text-decoration: none; padding: 7px 14px; border: 1px solid var(--brand-mid); border-radius: var(--radius-sm); background: var(--brand-soft); transition: background var(--t), transform var(--t); }
+  .proj-cta:hover { background: var(--brand-mid); transform: translateY(-1px); }
+  .proj-cta svg { width: 11px; height: 11px; }
+  .contact-card { padding: 32px 28px; }
+  .contact-heading { font-size: 24px; font-weight: 300; letter-spacing: -0.02em; color: var(--fg); margin-bottom: 6px; }
+  .contact-sub { font-size: 14px; color: var(--fg-3); font-weight: 300; margin-bottom: 32px; line-height: 1.7; }
+  .contact-links { display: flex; flex-direction: column; }
+  .contact-link { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--glass-border); text-decoration: none; transition: padding-left var(--t); }
+  .contact-link:last-child { border-bottom: none; }
+  .contact-link:hover { padding-left: 6px; }
+  .contact-link-label { font-size: 11px; font-family: 'Roboto Mono', monospace; color: var(--fg-4); text-transform: uppercase; letter-spacing: 0.07em; }
+  .contact-link-value { font-size: 14px; color: var(--brand); font-weight: 400; display: flex; align-items: center; gap: 6px; }
+  .contact-link-value svg { width: 11px; height: 11px; opacity: 0.55; }
+  .edu-list { display: flex; flex-direction: column; }
+  .edu-item { display: flex; align-items: baseline; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--glass-border); }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-field { font-size: 14px; font-weight: 400; color: var(--fg); }
+  .edu-inst { font-size: 13px; color: var(--fg-3); font-weight: 300; }
+  .status-row { display: flex; align-items: center; gap: 8px; margin-top: 32px; }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .status-text { font-size: 12px; font-family: 'Roboto Mono', monospace; color: var(--fg-4); }
+  footer { max-width: var(--max); margin: 0 auto; padding: 0 24px 48px; display: flex; justify-content: space-between; }
+  .footer-copy { font-size: 11px; font-family: 'Roboto Mono', monospace; color: var(--fg-4); }
+  @media (max-width: 540px) {
+    main { padding-top: calc(var(--nav-h) + 40px); }
+    .proj-card-top { flex-direction: column; gap: 8px; }
+    .exp-item { flex-wrap: wrap; gap: 4px; }
+    .exp-period { min-width: auto; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="return show('home')">Mohammad Reza Abdollahi</a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="return show('home')" id="nav-home" class="active">Home</a></li>
+      <li><a href="#" onclick="return show('portfolio')" id="nav-portfolio">Work</a></li>
+      <li><a href="#" onclick="return show('contact')" id="nav-contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <section class="page active" id="home">
+    <div style="padding-bottom:8px">
+      <p class="hero-title">Product Designer</p>
+      <h1 class="hero-name">Mohammadreza Abdollahi</h1>
+      <p class="hero-statement">Product Designer focused on creating intuitive user experiences, scalable design systems, and business-driven product solutions across marketplace and SaaS products.</p>
+      <div class="status-row">
+        <div class="status-dot"></div>
+        <span class="status-text">Open to opportunities &middot; Tehran</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label">About</p>
+      <div class="glass about-card">
+        <p>Product Designer with experience designing digital products across marketplace and SaaS environments. Currently working at Otaghak as Product Designer & Associate Product Manager, contributing to product strategy, user experience, and feature delivery. Alongside industry work, I have taught over 240 hours of UX/UI Design at MFT Academy. Passionate about design systems, product thinking, and creating experiences that solve real user problems.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Experience</p>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <span class="exp-period">2023/12 – Now</span>
+          <div>
+            <div class="exp-role">Product Designer &amp; APM</div>
+            <div class="exp-co">Otaghak — Real estate &amp; travel platform</div>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Built and maintained a unified Design System, improving design consistency and accelerating collaboration between design and engineering teams.</div>
+              <div class="exp-bullet">Optimized checkout and booking flow — reduced abandonment by 14%.</div>
+              <div class="exp-bullet">Enhanced review experience with photo-based comments — increased submissions by 34%.</div>
+              <div class="exp-bullet">Simplified key user journeys, reducing customer support dependency by 19%.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-period">2025/05 – Now</span>
+          <div >
+            <div class="exp-role">UX/UI Instructor</div>
+            <div class="exp-co">MFT Academy</div>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Delivered 240+ hours of UX/UI Design training, covering user research, interaction design, visual design principles, and Figma workflows.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-period">2023/01 – 2023/11</span>
+          <div >
+            <div class="exp-role">Product Designer</div>
+            <div class="exp-co">Holoo — Finance management software</div>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Owned the end-to-end design process, from user research and wireframing to prototyping and final UI delivery.</div>
+              <div class="exp-bullet">Conducted qualitative and quantitative research to identify user needs and validate design decisions.</div>
+              <div class="exp-bullet">Designed mobile &amp; web apps for personal finance management (Holoo PFM).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-period">2022/05 – 2023/01</span>
+          <div >
+            <div class="exp-role">Product Designer</div>
+            <div class="exp-co">Monta</div>
+            <div class="exp-bullets">
+              <div class="exp-bullet">Redesigned landing pages to enhance user experience.</div>
+              <div class="exp-bullet">Designed B2C sales page &amp; improved payment flow.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Education</p>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div><div class="edu-field">IT Engineering</div><div class="edu-inst">Azad University</div></div>
+        </div>
+        <div class="edu-item">
+          <div><div class="edu-field">Product Design</div><div class="edu-inst">Designa School</div></div>
+        </div>
+        <div class="edu-item">
+          <div><div class="edu-field">UX Design</div><div class="edu-inst">Coursera</div></div>
+        </div>
+        <div class="edu-item">
+          <div><div class="edu-field">UI/UX Design</div><div class="edu-inst">Duxlab Academy</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Craft &amp; Tools</p>
+      <div class="skills-section">
+        <div class="skill-group">
+          <span class="skill-group-label">Design</span>
+          <div class="skills-grid">
+            <span class="skill-tag">Wireframing</span>
+            <span class="skill-tag">Prototyping</span>
+            <span class="skill-tag">UI Design</span>
+            <span class="skill-tag">Design Systems</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-group-label">Research</span>
+          <div class="skills-grid">
+            <span class="skill-tag">User Research</span>
+            <span class="skill-tag">Usability Testing</span>
+            <span class="skill-tag">A/B Testing</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-group-label">Tools</span>
+          <div class="skills-grid">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Sketch</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Hotjar</span>
+            <span class="skill-tag">Microsoft Clarity</span>
+            <span class="skill-tag">GA4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Selected Work</p>
+      <div class="project-list-home">
+        <a class="proj-home-item" href="#" onclick="return show('portfolio')"><span class="proj-home-title">Booking & Checkout Flow Optimization</span><span class="proj-home-year">2025</span></a>
+        <a class="proj-home-item" href="#" onclick="return show('portfolio')"><span class="proj-home-title">Otaghak Design System</span><span class="proj-home-year">2024</span></a>
+        <a class="proj-home-item" href="#" onclick="return show('portfolio')"><span class="proj-home-title">Holoo Personal Finance Management App</span><span class="proj-home-year">2023</span></a>
+        <a class="proj-home-item" href="#" onclick="return show('portfolio')"><span class="proj-home-title">Monta Sales & Payment Experience</span><span class="proj-home-year">2022</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="page" id="portfolio">
+    <div style="margin-bottom:40px">
+      <p class="hero-title" style="margin-bottom:10px">Selected Work</p>
+      <p style="font-size:15px;color:var(--fg-3);font-weight:300">Projects across product design, design systems, and marketplace UX.</p>
+    </div>
+    <div class="portfolio-list">
+
+      <div class="glass proj-card">
+        <div class="proj-card-top"><span class="proj-title">Otaghak Design System</span><span class="proj-role-tag">System Lead</span></div>
+        <p class="proj-desc">Built and scaled a unified Design System at Otaghak, improving UI consistency and accelerating cross-functional delivery.</p>
+        <a class="proj-cta" href="https://www.figma.com/proto/HU5D88yaHX3HW9pTI9Idhs/Mohammadreza-Abdollahi---Portfolio?node-id=1-11&p=f&viewport=437%2C-1046%2C0.09&t=QnWZ8Rpx4ktPFgJC-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A10" target="_blank" rel="noopener">View Portfolio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></a>
+      </div>
+
+      <div class="glass proj-card">
+        <div class="proj-card-top"><span class="proj-title">Checkout & Booking Flow Optimization</span><span class="proj-role-tag">Product Designer</span></div>
+        <p class="proj-desc">Redesigned the end-to-end booking and checkout experience, reducing abandonment by 14% and improving conversion rate.</p>
+        <a class="proj-cta" href="https://www.figma.com/proto/HU5D88yaHX3HW9pTI9Idhs/Mohammadreza-Abdollahi---Portfolio?node-id=1-11&p=f&viewport=437%2C-1046%2C0.09&t=QnWZ8Rpx4ktPFgJC-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A10" target="_blank" rel="noopener">View Portfolio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></a>
+      </div>
+
+      <div class="glass proj-card">
+        <div class="proj-card-top"><span class="proj-title">Review Experience (Photo in Comments)</span><span class="proj-role-tag">Product Designer</span></div>
+        <p class="proj-desc">Improved the review flow by introducing photo-based comments, increasing review submissions by 34%.</p>
+        <a class="proj-cta" href="https://www.figma.com/proto/HU5D88yaHX3HW9pTI9Idhs/Mohammadreza-Abdollahi---Portfolio?node-id=1-11&p=f&viewport=437%2C-1046%2C0.09&t=QnWZ8Rpx4ktPFgJC-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A10" target="_blank" rel="noopener">View Portfolio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></a>
+      </div>
+
+      <div class="glass proj-card">
+        <div class="proj-card-top"><span class="proj-title">Holoo Personal Finance App</span><span class="proj-role-tag">Product Designer</span></div>
+        <p class="proj-desc">Led end-to-end UX for a personal finance app, from user research to final UI delivery across mobile and web.</p>
+        <a class="proj-cta" href="https://www.figma.com/proto/HU5D88yaHX3HW9pTI9Idhs/Mohammadreza-Abdollahi---Portfolio?node-id=1-11&p=f&viewport=437%2C-1046%2C0.09&t=QnWZ8Rpx4ktPFgJC-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A10" target="_blank" rel="noopener">View Portfolio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></a>
+      </div>
+
+      <div class="glass proj-card">
+        <div class="proj-card-top"><span class="proj-title">Monta B2C Sales & Payment Flow</span><span class="proj-role-tag">Product Designer</span></div>
+        <p class="proj-desc">Designed and optimized sales and payment flows with a focus on clarity and conversion.</p>
+        <a class="proj-cta" href="https://www.figma.com/proto/HU5D88yaHX3HW9pTI9Idhs/Mohammadreza-Abdollahi---Portfolio?node-id=1-11&p=f&viewport=437%2C-1046%2C0.09&t=QnWZ8Rpx4ktPFgJC-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A10" target="_blank" rel="noopener">View Portfolio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="page" id="contact">
+    <div class="glass contact-card">
+      <h2 class="contact-heading">Let's talk.</h2>
+      <p class="contact-sub">Open to product design roles, freelance collaborations, and UX consulting opportunities.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:moraabdollahi@gmail.com">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">moraabdollahi@gmail.com <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></span>
+        </a>
+        <a class="contact-link" href="tel:+989363191567">
+          <span class="contact-link-label">Phone</span>
+          <span class="contact-link-value">+98 936 319 1567 <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/mohammadreza-abdollahi-395568210/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BnUOp9eY8Q3WSNRvBSUZVKA%3D%3D" target="_blank" rel="noopener">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">linkedin.com/in/mohammadreza-abdollahi <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></span>
+        </a>
+        <a class="contact-link" href="https://www.youtube.com/@moradesign" target="_blank" rel="noopener">
+          <span class="contact-link-label">YouTube</span>
+          <span class="contact-link-value">YouTube Channel <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H5M10 2v5"/></svg></span>
+        </a>
+      </div>
+      <div class="status-row">
+        <div class="status-dot"></div>
+        <span class="status-text">Open to opportunities &middot; Tehran</span>
+      </div>
+    </div>
+    <div style="margin-top:10px">
+      <div class="glass" style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:13px;color:var(--fg-3);font-weight:300">Based in Tehran, Iran</span>
+        <span style="font-size:11px;font-family:'Roboto Mono',monospace;color:var(--fg-4)">UTC+3:30</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-copy">&copy; Mohammadreza Abdollahi</span>
+  <span class="footer-copy">Product Designer</span>
+</footer>
+
+<script>
+function show(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  var el = document.getElementById('nav-' + page);
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  return false;
+}
+</script>
+</body>
+</html>
